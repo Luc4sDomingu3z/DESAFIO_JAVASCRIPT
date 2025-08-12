@@ -11,31 +11,37 @@ html {
 }
 
 div#carousel {
-  display: grid;
-  grid-template-columns: 100% 100% 100%;
-  min-height: 46vh;
   width: 100%;
   overflow: hidden;
-  max-height: 660px;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
+div#carousel-subcontainer {
+  width: 100%;
+  min-height: 50vh;
+  position: relative;
+  overflow: hidden;
+}
 
-div#carousel>div {
+div#carousel-subcontainer>div {
+  position: absolute;
+  /* inset: 0; */
   width: 100%;
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
-  transform: translateX(0%);
-  transition: all 300ms ease-out
+  transition: all 300ms ease-out 5000ms;
 }
 
-div#carousel>div.slided {
-  transform: translateX(-100%) !important;
+
+div#carousel-subcontainer>div.slided {
+  opacity: 1 !important;
+  z-index: 1;
+  transition: 300ms ease-out;
 }
 
-div#carousel>div a {
+div#carousel-subcontainer>div a {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
@@ -44,7 +50,7 @@ div#carousel>div a {
   user-select: none;
 }
 
-div#carousel>div a img {
+div#carousel-subcontainer>div a img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -52,7 +58,7 @@ div#carousel>div a img {
   object-position: center;
 }
 
-div#carousel>div p {
+div#carousel-subcontainer>div p {
   width: 100%;
   text-align: center;
   padding: 0.5rem;

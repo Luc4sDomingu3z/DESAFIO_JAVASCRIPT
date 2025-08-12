@@ -25,6 +25,8 @@ class Carousel {
       throw "Imagem inválida.";
 
     const container = document.getElementById("carousel");
+    const subContainer = document.createElement('div')
+    subContainer.id = "carousel-subcontainer"
 
     let images = [];
 
@@ -39,9 +41,10 @@ class Carousel {
       newDom.imgLink.appendChild(newDom.img);
       newDom.imgContainer.appendChild(newDom.imgLink);
       newDom.imgContainer.appendChild(newDom.text);
-      container.appendChild(newDom.imgContainer);
+      subContainer.appendChild(newDom.imgContainer)
       images.push(newDom.imgContainer);
     }
+    container.appendChild(subContainer);
     return images;
   }
 
@@ -63,11 +66,9 @@ class Carousel {
   }
 
   static Next(imgs) {
-    if (Carousel._size === Carousel._sequence) {
-      Carousel._sequence = 0
-    }
+    const container = document.getElementById('carousel')
 
-    imgs[Carousel._sequence].classList.add('slided')
-    Carousel._sequence += 1
+    // container.style.transform = `translateX(-100%)`
+
   }
 }

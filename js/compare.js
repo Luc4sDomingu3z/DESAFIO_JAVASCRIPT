@@ -6,7 +6,17 @@ class Car {
    
 
     constructor(nome, preco, alturaCacamba, alturaVeiculo, alturaSolo, capacidadeCarga, motor, potencia, volumeCacamba, roda, image){
-       
+     this.nome = nome
+     this.preco = preco
+     this.alturaCacamba = alturaCacamba
+     this.alturaVeiculo = alturaVeiculo
+     this.alturaSolo   = alturaSolo
+     this.capacidadeCarga = capacidadeCarga
+     this.motor=motor
+     this.potencia=potencia
+     this.volumeCacamba=volumeCacamba
+     this.roda=roda
+     this.image=image
     }
 } 
 
@@ -22,12 +32,13 @@ function GetCarArrPosition(arr, carClass) {
 function SetCarToCompare(el, carClass) {
    
     if(carClass instanceof Car){       
+        const pos = GetCarArrPosition(carArr, carClass)
         if(el.checked){
-                
-            
+
         } else {
           
-        } 
+        }
+        console.log(carArr)
     } else {
         throw "You need set a Car Class";
     }
