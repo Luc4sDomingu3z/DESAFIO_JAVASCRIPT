@@ -32,13 +32,13 @@ function SetCarToCompare(el, carClass) {
 
   if (carClass instanceof Car) {
     const pos = GetCarArrPosition(carArr, carClass)
-    console.log("posicao", pos)
     if (el.checked) {
-      carArr.push(carClass)
-    } else {
+        if (pos < 0)  carArr.push(carClass)
 
+        if (carArr.length > 2) carArr = carArr.filter((el, i, arr) => i > arr.length - arr.length)
+    } else {
+        carArr = carArr.filter((el, i) => i != pos)
     }
-    console.log(carArr)
   } else {
     throw "You need set a Car Class";
   }
@@ -50,7 +50,7 @@ function ShowCompare() {
     return;
   }
 
-  UpdateCompareTable();
+  UpdateCompareTable(carArr);
   document.getElementById("compare").style.display = "block";
 }
 
@@ -58,6 +58,19 @@ function HideCompare() {
   document.getElementById("compare").style.display = "none";
 }
 
-function UpdateCompareTable() {
+function UpdateCompareTable(carsData) {
+    if (typeof carsData === "object" && carsData.length === 0)
+        throw "Dados vazios"
 
+    const table = document.querySelector('div#compare table')
+    
+    const tbody = table.querySelector('tbody')
+
+    console.log(tbody)
+
+    for (let i = 0; i < carsData.length; i++) {
+        for (let c = 0; c < tbody.children.length; i++) {
+            let tr = tbody.children.namedItem('tr')
+        }
+    }
 }
