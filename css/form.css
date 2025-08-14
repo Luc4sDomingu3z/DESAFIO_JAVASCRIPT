@@ -36,6 +36,16 @@ main div {
     text-align: center;
 }
 
+form input:hover {
+    outline: 1px solid rgb(22, 100, 255);
+    transition: all 300ms ease;
+}
+
+form button:hover {
+    transform: scale(1.08);
+    transition: 400ms ease-out;
+}
+
 h2 {
     text-align: left;
     font-weight: 800;
