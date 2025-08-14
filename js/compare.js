@@ -83,12 +83,49 @@ function UpdateCompareTable(carsData) {
 
       for (let i = 0; i < td.length; i++) {
         console.log("compare_image_" + i)
-        if (td[i].id === ("compare_image_" + i)) {
-          const img = document.createElement('img')
-          img.src = carsData[i].image
-          td[i].appendChild(img)
+        td[i].innerHTML = ''
+        switch (td[i].id) {
+          case ('compare_image_' + i):
+            const img = document.createElement('img')
+            img.src = carsData[i].image
+            td[i].appendChild(img)  
+            break;
+          case ("compare_modelo_" + i):
+            td[i].innerHTML = carsData[i].nome
+            break;
+          case ("compare_alturacacamba_" + i):
+            td[i].innerHTML = carsData[i].alturaCacamba
+            break;
+          case ("compare_alturaveiculo_" + i):
+            td[i].innerHTML = carsData[i].alturaVeiculo
+            break;
+          case ("compare_capacidadecarga_" + i):
+            td[i].innerHTML = carsData[i].capacidadeCarga
+            break;
+          case ("compare_alturasolo_" + i):
+            td[i].innerHTML = carsData[i].alturaSolo
+            break;
+          case ("compare_motor_" + i):
+            td[i].innerHTML = carsData[i].motor
+            break;
+          case ("compare_potencia_" + i):
+            td[i].innerHTML = carsData[i].potencia
+            break;
+          case ("compare_volumecacamba_" + i):
+            td[i].innerHTML = carsData[i].volumeCacamba
+            break;
+          case ("compare_roda_" + i):
+            td[i].innerHTML = carsData[i].roda
+            break;
+          case("compare_preco_" + i):
+            td[i].innerHTML = carsData[i].preco
+            break;
+          default:
+            break;
         }
+        
       }
+
     }
   })
 }
