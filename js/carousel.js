@@ -1,5 +1,9 @@
 //carousel
 
+/**
+ * CHANGING CAROUSEL
+ */
+
 //Array storage class
 let carouselArr = [];
 
