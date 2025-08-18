@@ -54,7 +54,6 @@ class Carousel {
 
   static Start(arr) {
     if (arr) {
-      console.log(arr);
       if (arr.length > 0) {
         const images = this.InsertImg(arr);
         Carousel._sequence = 0;
@@ -62,7 +61,7 @@ class Carousel {
         Carousel.Next(images); //start
         Carousel._interval = setInterval(function () {
           Carousel.Next(images);
-        }, 5000);
+        }, 2000);
       }
     } else {
       throw "Method Start need a Array Variable.";
@@ -71,8 +70,37 @@ class Carousel {
 
   static Next(imgs) {
     const container = document.getElementById('carousel')
+    console.log(Carousel._sequence)
+  
+    if (Carousel._sequence === 0 && imgs[imgs.length - 1].classList.contains('slided')) {
+      console.log('ultimo slide')
+      imgs[imgs.length - 1].classList.remove('slided')
+    }
 
-    // container.style.transform = `translateX(-100%)`
+    imgs[Carousel._sequence].classList.toggle('slided')
+
+
+    if (imgs[Carousel._sequence] === undefined) {
+      console.log('Imagem nao existe, resetando')
+      Carousel._sequence = 0
+      imgs[Carousel._sequence].classList.toggle('slided')
+      Carousel._sequence += 1
+      return
+    }
+    
+    if (imgs[Carousel._sequence - 1] !== undefined && imgs[Carousel._sequence - 1].classList.contains('slided')) {
+      console.log('Retirando css do ultimo slide')
+      imgs[Carousel._sequence - 1].classList.remove('slided')
+    }
+    
+    if (Carousel._sequence < (imgs.length - 1)) {
+      Carousel._sequence += 1
+      return
+    } else {
+      Carousel._sequence = 0
+      return;
+    }
+
 
   }
 }
