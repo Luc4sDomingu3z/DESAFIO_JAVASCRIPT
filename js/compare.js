@@ -66,88 +66,34 @@ function UpdateCompareTable(carsData) {
 
   const tbody = table.querySelector('tbody')
 
-  carsData.map(function (el) {
-    for (let i = 0; i < tbody.children.length; i++) {
-      let tr = tbody.children[i]
-      let td = [];
+  let td = [];
+  for (let i = 0; i < tbody.children.length; i++) {
+    let tr = tbody.children[i]
 
-      for (let _td = 0; _td < tr.children.length; _td++) {
-        if (tr.children[_td].id.length > 0) td.push(tr.children[_td])
-      }
-
-      /**
-       * Todos os índices da classe possuem mesmo nome que os ids das células
-       * logo, os índices serão passados em lowerCase para comparar com os ids das células
-       */
-      function compararIndices() {
-        const indices = Object.keys(el).map((v) => v.toLowerCase())
-        const indicesNormais = Object.keys(el)
-        // console.log(indicesNormais)
-        let tdId;
-        for (let i= 0; i < td.length; i++) {
-          td[i].innerHTML = ''
-          tdId = td[i].id.toLowerCase()
-          for (let _i= 0; _i < indices.length; _i++) {
-            if (tdId.includes(indices[_i])) {
-              console.log()
-              td[i].innerHTML = el[indicesNormais[_i]]
-            }
-            // console.log("IGUAL " + tdId + " " + indices[_i])
-          }
-        }
-        // tdId.every((el, index) => {
-        //   console.log(el)
-        // })
-      }
-
-      compararIndices()
-
-      /*
-      for (let i = 0; i < td.length; i++) {
-        td[i].innerHTML = ''
-        switch (td[i].id) {
-          case ('compare_image_' + i):
-            const img = document.createElement('img')
-            img.src = carsData[i].image
-            td[i].appendChild(img)  
-            break;
-          case ("compare_modelo_" + i):
-            td[i].innerHTML = carsData[i].modelo
-            break;
-          case ("compare_alturacacamba_" + i):
-            td[i].innerHTML = carsData[i].alturaCacamba
-            break;
-          case ("compare_alturaveiculo_" + i):
-            td[i].innerHTML = carsData[i].alturaVeiculo
-            break;
-          case ("compare_capacidadecarga_" + i):
-            td[i].innerHTML = carsData[i].capacidadeCarga
-            break;
-          case ("compare_alturasolo_" + i):
-            td[i].innerHTML = carsData[i].alturaSolo
-            break;
-          case ("compare_motor_" + i):
-            td[i].innerHTML = carsData[i].motor
-            break;
-          case ("compare_potencia_" + i):
-            td[i].innerHTML = carsData[i].potencia
-            break;
-          case ("compare_volumecacamba_" + i):
-            td[i].innerHTML = carsData[i].volumeCacamba
-            break;
-          case ("compare_roda_" + i):
-            td[i].innerHTML = carsData[i].roda
-            break;
-          case("compare_preco_" + i):
-            td[i].innerHTML = carsData[i].preco
-            break;
-          default:
-            break;
-        }
-        
-      }
-      */
-
+    for (let _td = 0; _td < tr.children.length; _td++) {
+      if (tr.children[_td].id.length > 0) td.push(tr.children[_td])
     }
+  }
+
+  // Chaves da classe em string descapitalizada
+  const carro_lower = carsData.map(function (el, index) {
+    let el_keys_arr = Object.keys(el)
+    let carro_lower = [];
+
+    for (let indices = 0; indices < el_keys_arr.length; indices++)
+      carro_lower.push(el_keys_arr[indices].toLowerCase())
+
+    return carro_lower
+  })
+  const carro_indices = Object.keys(carro_lower)
+
+  carsData.map(function (el, index, arr) {
+    for (let i = 0; i < td.length; i++) {
+      let idlower = td[i].id.toLowerCase()
+    }
+
+    console.log(arr[index])
+
+
   })
 }
