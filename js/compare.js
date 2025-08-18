@@ -88,12 +88,16 @@ function UpdateCompareTable(carsData) {
   const carro_indices = Object.keys(carro_lower)
 
   carsData.map(function (el, index, arr) {
+    let keysEl = Object.keys(el)
+    const keysElIndex = keysEl.map(v => v.toLowerCase() + "_" + index)
+
+    let idlower = '';
+
     for (let i = 0; i < td.length; i++) {
-      let idlower = td[i].id.toLowerCase()
+      idlower = td[i].id.toLowerCase()
+      for (let _i = 0; _i < keysEl.length; _i++)
+        if (idlower.includes(keysElIndex[_i]))
+          td[i].innerHTML = (keysElIndex[_i].includes('image')) ? `<img src='${el[keysEl[_i]]}'>` : `${el[keysEl[_i]]}`;
     }
-
-    console.log(arr[index])
-
-
   })
 }
