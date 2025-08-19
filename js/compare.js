@@ -75,18 +75,6 @@ function UpdateCompareTable(carsData) {
     }
   }
 
-  // Chaves da classe em string descapitalizada
-  const carro_lower = carsData.map(function (el, index) {
-    let el_keys_arr = Object.keys(el)
-    let carro_lower = [];
-
-    for (let indices = 0; indices < el_keys_arr.length; indices++)
-      carro_lower.push(el_keys_arr[indices].toLowerCase())
-
-    return carro_lower
-  })
-  const carro_indices = Object.keys(carro_lower)
-
   carsData.map(function (el, index, arr) {
     let keysEl = Object.keys(el)
     const keysElIndex = keysEl.map(v => v.toLowerCase() + "_" + index)
