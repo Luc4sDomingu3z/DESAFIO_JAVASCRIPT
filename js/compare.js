@@ -66,88 +66,26 @@ function UpdateCompareTable(carsData) {
 
   const tbody = table.querySelector('tbody')
 
-  carsData.map(function (el) {
-    for (let i = 0; i < tbody.children.length; i++) {
-      let tr = tbody.children[i]
-      let td = [];
+  let td = [];
+  for (let i = 0; i < tbody.children.length; i++) {
+    let tr = tbody.children[i]
 
-      for (let _td = 0; _td < tr.children.length; _td++) {
-        if (tr.children[_td].id.length > 0) td.push(tr.children[_td])
-      }
+    for (let _td = 0; _td < tr.children.length; _td++) {
+      if (tr.children[_td].id.length > 0) td.push(tr.children[_td])
+    }
+  }
 
-      /**
-       * Todos os índices da classe possuem mesmo nome que os ids das células
-       * logo, os índices serão passados em lowerCase para comparar com os ids das células
-       */
-      function compararIndices() {
-        const indices = Object.keys(el).map((v) => v.toLowerCase())
-        const indicesNormais = Object.keys(el)
-        // console.log(indicesNormais)
-        let tdId;
-        for (let i= 0; i < td.length; i++) {
-          td[i].innerHTML = ''
-          tdId = td[i].id.toLowerCase()
-          for (let _i= 0; _i < indices.length; _i++) {
-            if (tdId.includes(indices[_i])) {
-              console.log()
-              td[i].innerHTML = el[indicesNormais[_i]]
-            }
-            // console.log("IGUAL " + tdId + " " + indices[_i])
-          }
-        }
-        // tdId.every((el, index) => {
-        //   console.log(el)
-        // })
-      }
+  carsData.map(function (el, index, arr) {
+    let keysEl = Object.keys(el)
+    const keysElIndex = keysEl.map(v => v.toLowerCase() + "_" + index)
 
-      compararIndices()
+    let idlower = '';
 
-      /*
-      for (let i = 0; i < td.length; i++) {
-        td[i].innerHTML = ''
-        switch (td[i].id) {
-          case ('compare_image_' + i):
-            const img = document.createElement('img')
-            img.src = carsData[i].image
-            td[i].appendChild(img)  
-            break;
-          case ("compare_modelo_" + i):
-            td[i].innerHTML = carsData[i].modelo
-            break;
-          case ("compare_alturacacamba_" + i):
-            td[i].innerHTML = carsData[i].alturaCacamba
-            break;
-          case ("compare_alturaveiculo_" + i):
-            td[i].innerHTML = carsData[i].alturaVeiculo
-            break;
-          case ("compare_capacidadecarga_" + i):
-            td[i].innerHTML = carsData[i].capacidadeCarga
-            break;
-          case ("compare_alturasolo_" + i):
-            td[i].innerHTML = carsData[i].alturaSolo
-            break;
-          case ("compare_motor_" + i):
-            td[i].innerHTML = carsData[i].motor
-            break;
-          case ("compare_potencia_" + i):
-            td[i].innerHTML = carsData[i].potencia
-            break;
-          case ("compare_volumecacamba_" + i):
-            td[i].innerHTML = carsData[i].volumeCacamba
-            break;
-          case ("compare_roda_" + i):
-            td[i].innerHTML = carsData[i].roda
-            break;
-          case("compare_preco_" + i):
-            td[i].innerHTML = carsData[i].preco
-            break;
-          default:
-            break;
-        }
-        
-      }
-      */
-
+    for (let i = 0; i < td.length; i++) {
+      idlower = td[i].id.toLowerCase()
+      for (let _i = 0; _i < keysEl.length; _i++)
+        if (idlower.includes(keysElIndex[_i]))
+          td[i].innerHTML = (keysElIndex[_i].includes('image')) ? `<img src='${el[keysEl[_i]]}'>` : `${el[keysEl[_i]]}`;
     }
   })
 }
